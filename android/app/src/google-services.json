@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "412711693425",
+    "project_id": "kombinapp-e1e84",
+    "storage_bucket": "kombinapp-e1e84.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412711693425:android:693796f450d12dc9a73fd0",
+        "android_client_info": {
+          "package_name": "com.codetalks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412711693425-d30ors88s8hlrq8oq7999dqosh9h741s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi9VSTLw3l488UsDW6oVhCzSTYfwiG_tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412711693425-d30ors88s8hlrq8oq7999dqosh9h741s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
