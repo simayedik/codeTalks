@@ -9,6 +9,7 @@ export default function MessageInput({text,setText ,onPress}) {
           value={text}
           onChangeText={setText}
           placeholder="Mesajınızı yazın..."
+          placeholderTextColor={'rgb(76, 76, 76)'}
           style={styles.input}
           multiline
         />

@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 12,
   },
+  inputContainer: {
+ borderTopWidth: 1,
+  borderColor: '#ddd',
+  backgroundColor: 'white',
+},
+
 });
 
 

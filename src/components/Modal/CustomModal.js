@@ -13,7 +13,7 @@ export default function CustomModal({text,setText,isModalVisible,closeModal,butt
       onBackdropPress={closeModal}
       onBackButtonPress={closeModal}>
       <View style={styles.modalContainer}>
-         <Input value={text} onChangeText={setText} placeholders={'Oda Adı ?'}/>
+         <Input style={styles.input} value={text} onChangeText={setText} placeholders={'Oda Adı ?'} theme='secondary'/>
          <ButtonComponent text={'Oluştur'} onPress={buttonOnpress}/>
       </View>
 
@@ -27,6 +27,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-
   },
 });

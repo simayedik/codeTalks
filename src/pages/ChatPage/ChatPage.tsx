@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {useRoute} from '@react-navigation/native';
-import ButtonComponent from '../../components/Button/ButtonComponent';
 import MessageInput from '../../components/MessageInput';
 import {format} from 'date-fns';
 import {tr} from 'date-fns/locale';
@@ -19,10 +18,11 @@ import styles from './ChatPage.style';
 
 export default function ChatPage() {
   const route = useRoute();
-  const {createdBy, date, roomName, userName} = route.params;
+  const {roomName, userName} = route.params;
   const flatListRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -39,6 +39,26 @@ export default function ChatPage() {
     return () => unsubscribe();
   }, [roomName]);
 
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      (e) => {
+        setKeyboardHeight(e.endCoordinates.height);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardHeight(0);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   const sendMessage = () => {
     if (!text.trim()) return;
 
@@ -53,7 +73,6 @@ export default function ChatPage() {
 
   const renderItem = ({item}) => {
     const isCurrentUser = item.sender === userName;
-    console.log(item);
     const createdAtDate = new Date(item.timestamp._seconds * 1000);
     const date = format(createdAtDate, 'dd.MM', {locale: tr});
 
@@ -74,10 +93,10 @@ export default function ChatPage() {
     <SafeAreaView style={{flex: 1}}>
       <KeyboardAvoidingView
         style={{flex: 1}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}>
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        keyboardVerticalOffset={keyboardHeight}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.container}>
+          <View style={[styles.container, {paddingBottom: keyboardHeight}]}>
             <FlatList
               ref={flatListRef}
               data={messages}
@@ -91,9 +110,9 @@ export default function ChatPage() {
                 flatListRef.current?.scrollToEnd({animated: true})
               }
             />
-           <View style={{alignContent:'flex-end'}}>
+            <View style={{paddingBottom: 5}}>
               <MessageInput text={text} setText={setText} onPress={sendMessage} />
-           </View>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

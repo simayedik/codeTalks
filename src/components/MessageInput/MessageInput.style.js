@@ -3,20 +3,18 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   inputContainer: {
-
     flexDirection: 'row',
-    padding: 10,
+    backgroundColor: 'white',
+    padding: 12,
     borderTopWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#fff',
-  
+    borderColor: '#ddd',
   },
   input: {
     flex: 1,
     minHeight: 40,
     maxHeight: 100,
     paddingHorizontal: 10,
-    backgroundColor: '#eee',
+    backgroundColor: 'rgb(202, 201, 201)',
     borderRadius: 20,
     fontSize: 16,
     marginRight: 10,
@@ -33,5 +31,4 @@ const styles = StyleSheet.create({
 });
 
 
-
-export default styles;
+export default styles

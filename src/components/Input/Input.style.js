@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-const styles = StyleSheet.create({
+const base_style = StyleSheet.create({
   container: {
     marginHorizontal: 10,
     marginVertical: 10,
@@ -9,6 +9,20 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 10,
   },
+  placeholderColor: 'rgb(105, 104, 104)',
 });
 
-export default styles;
+export default {
+  primary:StyleSheet.create({
+    ...base_style,
+  }),
+  secondary:StyleSheet.create({
+    ...base_style,
+    input:{
+       ...base_style.input,
+      color:'#1c1c1c'
+    },
+    placeholderColor: 'rgb(105, 104, 104)',
+  }),
+
+}

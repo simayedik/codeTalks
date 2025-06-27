@@ -52,11 +52,6 @@ export default function HomePage({navigation}) {
     return subscriber; // cleanup
   }, []);
 
- 
-
-  function veriekle() {
-    console.log('tıklandı');
-  }
   function handleChangeText(value) {
     setText(value);
   }
@@ -128,8 +123,10 @@ export default function HomePage({navigation}) {
     });
   };
 
+
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={rooms}
         keyExtractor={item => item.id}
@@ -137,7 +134,6 @@ export default function HomePage({navigation}) {
          <RoomButtonComponent item={item} userName={userName} onPress={enterRoom} />
         )}
       />
-
       <CustomModal
         isModalVisible={isModalVisible}
         closeModal={closeModal}
@@ -155,7 +151,7 @@ export default function HomePage({navigation}) {
           style={styles.plusIcon}
         />
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
